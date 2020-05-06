@@ -13,14 +13,19 @@ const CategoryMealsScreen = props => {
                 duration={itemData.item.duration} 
                 complexity={itemData.item.complexity}
                 affordability={itemData.item.affordability}
-                onSelectMeal={() => {}} 
+                onSelectMeal={() => {
+                    props.navigation.navigate({
+                        routeName: 'MealDetail', 
+                        params: {
+                            mealId: itemData.item.id
+                        }
+                    });
+                }} 
             />
         );
     };
 
     const catId = props.navigation.getParam('categoryId');
-
-    const selectedCategory = CATEGORIES.find(cat => cat.id === catId);
 
     const displayedMeals = MEALS.filter(
         meal => meal.categoryIds.indexOf(catId) >= 0
@@ -51,7 +56,8 @@ const styles = StyleSheet.create({
     screen: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        padding: 15
     }
 });
 

@@ -4,9 +4,9 @@ import { View, Text, StyleSheet, Platform, TouchableOpacity, TouchableNativeFeed
 const MealItem = props => {
     let TouchableComp = TouchableOpacity;
 
-    if(Platform.OS === 'android' && Platform.Version >=21){
+/*     if(Platform.OS === 'android' && Platform.Version >=21){
         TouchableComp = TouchableNativeFeedback;
-    }
+    } */
 
     return (
         <View style={styles.mealItem}>
@@ -14,7 +14,9 @@ const MealItem = props => {
                 <View>
                     <View style={{...styles.mealRow, ...styles.mealHeader}}>
                         <ImageBackground source={{uri: props.image}} style={styles.bgImage}>
-                            <Text style={styles.title}>{props.title}</Text>
+                            <View style={styles.titleContainer}>
+                                <Text style={styles.title} numberOfLines={1}>{props.title}</Text>
+                            </View>
                         </ImageBackground>
                     </View>
                     <View style={{...styles.mealRow, ...styles.mealDetail}}>
@@ -33,31 +35,38 @@ const styles = StyleSheet.create({
         flex: 1,
         height: 200,
         width: '100%',
-        backgroundColor: '#ccc'
+        backgroundColor: '#f5f5f5',
+        borderRadius: 10,
+        overflow: 'hidden',
+        marginVertical: 10
     },
     bgImage:{
         width: '100%',
         height: '100%',
         justifyContent: 'flex-end'
     },
+    titleContainer: {
+        backgroundColor: 'rgba(0,0,0,0.5)',
+        paddingVertical: 5,
+        paddingHorizontal: 12,
+    },
     title: {
         fontFamily: 'open-sans-bold',
         fontSize: 20,
         color: 'white',
-        backgroundColor: 'rgba(0,0,0,0.5)',
-        paddingVertical: 5,
-        paddingHorizontal: 12,
         textAlign: 'center'
     },
     mealRow: {
         flexDirection: 'row'
     },
     mealHeader: {
-        height: '90%'
+        height: '85%'
     },
     mealDetail: {
         paddingHorizontal: 10,
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        height: '15%'
     }
 });
 
