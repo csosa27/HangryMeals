@@ -19,21 +19,29 @@ const defaulStackNavOptions = {
         backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : 'white'
     },
     headerTitleStyle:{
-        fontFamily: 'open-sans-bold'
+        fontFamily: 'open-sans-bold',
     },
     headerBackTitleStyle: {
         fontFamily: 'open-sans'
     },
     headerTintColor: Platform.OS === 'android' ? Colors.tabTint : Colors.primaryColor,
-    headerTitle: 'A Screen'
+    headerTitle: 'A Screen',
 };
 
 const MealsNavigator = createStackNavigator({
     Categories: CategoriesScreen,
     CategoryMeals: {
         screen: CategoryMealsScreen,
+        navigationOptions: {
+            headerTitleAllowFontScaling: true,
+        }
     },
-    MealDetail: MealDetailScreen
+    MealDetail: {
+        screen: MealDetailScreen,
+        navigationOptions: {
+            headerTitleAllowFontScaling: true,
+        }
+    }
 },{
     defaultNavigationOptions: defaulStackNavOptions
 });
@@ -49,7 +57,7 @@ const tabScreenConfig = {
     Meals: {
         screen: MealsNavigator,
         navigationOptions: {
-            tabBarIcon: (tabInfo) => {
+            tabBarIcon: tabInfo => {
                 return (
                     <Ionicons 
                         name='ios-restaurant' 
